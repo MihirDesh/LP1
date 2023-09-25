@@ -72,7 +72,6 @@ class Pass2:
                     else:
                         break
 
-                # print(self.aptab)
 
         print(self.output)
 
