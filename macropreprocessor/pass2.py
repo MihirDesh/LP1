@@ -1,5 +1,4 @@
 class Pass2:
-    # INPUT TO PASS 2 IS intermediate.txt and mdt.txt
     def __init__(self) -> None:
         self.mnt = {}
         self.pntab = {}
@@ -10,7 +9,7 @@ class Pass2:
         pass
 
     def readFiles(self):
-        self.mnt = {
+        self.mnt = {   
             'M1':      [2,       2,      1,       1],
             'M2':      [2,       2,       6,       3]
         }
