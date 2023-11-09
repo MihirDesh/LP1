@@ -103,46 +103,29 @@ class Election
         sleep(1);
         cout<<"Current Coordinator Fails"<<endl;
     }
-    void BullyElection()
+   void BullyElection()
     {
-        int old = currindex;
-        int a = rand() % (v.size() - 1);
-        int new1 = currindex - a;
-        cout << "Detected By: " << v[currindex - a].id << endl;
-        v[currindex].act = false;
+        int old = currindex;             // Store the current coordinator's index
+        int a = rand() % (v.size() - 1);  // Select a random value a for the election
+        int new1 = currindex - a;        // Calculate the index of the new coordinator candidate
+        cout << "Detected By: " << v[currindex - a].id << endl;  // Print the process that detected the failure
+        v[currindex].act = false;        // Mark the current coordinator as inactive
         sleep(1);
-        cout << "Election Initialized" << endl;
+        cout << "Election Initialized" << endl;  // Print that the election process has started
     
         while (true)
         {
-            // Send election message to higher processes
             for (int i = new1; i < v.size() - 1; i++)
             {
                 if (v[i].act)
-                {
                     cout << "Election message from " << v[new1].id << " to " << v[i + 1].id << endl;
-                    // Process i+1 receives the message and responds, check if it wants to participate
-                    if (/* Condition to respond positively, e.g., if it's not participating yet */)
-                    {
-                        cout << "OK message from " << v[i + 1].id << " to " << v[new1].id << endl;
-                        // Process i+1 accepts the election and responds positively
-                    }
-                    else
-                    {
-                        // Process i+1 rejects the election, and you may want to inform others
-                    }
-                }
                 sleep(1);
             }
     
-            // Send OK messages to lower processes
             for (int i = v.size() - 1; i > new1; i--)
             {
                 if (v[i].act)
-                {
                     cout << "OK message from " << v[i].id << " to " << v[new1].id << endl;
-                    // Process new1 receives the OK message
-                }
                 sleep(1);
             }
     
@@ -156,7 +139,7 @@ class Election
             }
         }
     
-        cout << "Elected Coordinator is: " << v[new1 - 1].id << endl;
+        cout << "Elected Coordinator is: " << v[new1 - 1].id << endl;  // Announce the elected coordinator
     }
 };
 int main()
